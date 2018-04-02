@@ -1,0 +1,21 @@
+{
+    "name": "smadeira/mp-wordpress-plugin",
+    "description": "A base Wordpress plugin",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Scott Madeira",
+            "email": "scott@mygcc.org"
+        }
+    ],
+    "require": {
+    	"php": ">=7.0.0",
+    	"smadeira/ministry-platform-api": "^2.0.0"
+    },
+    "autoload": {
+        "classmap": [
+            "./Templates"
+        ]
+    }
+}
