@@ -33,7 +33,7 @@ class groupList extends baseTemplate
                     $content .= '<td>' .  $group['Congregation_Name']  . '</td>';
                     $content .= '<td>' .  $group['Ministry_Name']  . '</td>';
                     $content .= '<td>' .  $group['Group_Type']  . '</td>';
-                    $content .= '<td>' .  $group['Parent Group']  . '</td>';
+                    $content .= '<td>' .  $group['Parent_Group']  . '</td>';
                     $content .= '<td>' .  $group['Group_ID']  . '</td>';
                     $content .= '</tr>';
                 }

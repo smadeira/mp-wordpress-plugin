@@ -22,7 +22,9 @@ mpLoadConnectionParameters();
 class MP_API_SHORTCODES
 {
     /**
-     * Shortcode that will pull featured events for the home page
+     * Shortcode that will pull a list of active groups
+     *
+     *	Short Code for this function: [mpapi_group_list]
      *
      * @param array $atts
      * @param null $content
