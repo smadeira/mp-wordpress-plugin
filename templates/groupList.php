@@ -2,31 +2,47 @@
 
 use MinistryPlatform\Templates\baseTemplate as baseTemplate;
 
-
+/**
+ *  Basic Template that accepts an array of groups
+ *  
+ *  Output is a simple HTML table of data as a proof of concept
+ *
+ */
 class groupList extends baseTemplate
 {
+    public static function render($groups){
 
-    public static function render($events){
+        // echo "<pre>"; print_r($groups); echo "</pre>"; die();
 
-	    $content = '<div class="mpapi-featured-events">';
+        $content = '
+            <div class="mpapi-featured-events"> 
+                <table>
+                    <thead>
+                    <th>Name</th>
+                    <th>Congregation</th>
+                    <th>Ministry Name</th>
+                    <th>Group Type</th>
+                    <th>Parent Group</th>
+                    <th>ID</th>
+                    </thead><tbody>';
+        
+        
+                foreach( $groups as $group ) {
+                    $content .= '<tr>';
+                    $content .= '<td>' .  $group['Group_Name']  . '</td>';
+                    $content .= '<td>' .  $group['Congregation_Name']  . '</td>';
+                    $content .= '<td>' .  $group['Ministry_Name']  . '</td>';
+                    $content .= '<td>' .  $group['Group_Type']  . '</td>';
+                    $content .= '<td>' .  $group['Parent Group']  . '</td>';
+                    $content .= '<td>' .  $group['Group_ID']  . '</td>';
+                    $content .= '</tr>';
+                }
 
-	    foreach ( $events as $event ) {
-		    $content .= '
-                    <div class="mpapi-child-event">
-                        <a href="/event-details?id=' . $event['Event_ID'] . '">
-                            <img class="mpapi-event-image" src="'. getenv('MP_API_ENDPOINT') . '/files/' . $event[ 'Image_ID' ] . '">
-                        </a>
-                        <p>' . $event['Event_Title'] . '</p>
-                    </div>
-                ';
-	    }
+        $content .= '</tbody></table>';
+        $content .= "</div>";
 
-	    $content .= "</div>";
-
-	    return $content;
-
+        return $content;
     }
-
 }
 
 
