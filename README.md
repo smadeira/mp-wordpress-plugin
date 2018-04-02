@@ -14,7 +14,7 @@ Create a plugin folder in your WP installation, copying the files to the plugin 
 MP API configuraiton parameters and creating a page to use your shortcode.  We'll take that one step at a time.
 
 ### Assumptions
-I am assuming that you know how to use GitHub to clone a repository and use <a href="http://getcomposer.org">Composer</a> for php package management.  I also assume you are familiar with WordPress packages and the like.  This code is offered as-is and it may or may not work in your situation.  I'll try to help as much as I can but I can't provide full support forthis code.  IT is meant to get you started on your WP development journey with Ministry Platform.
+I am assuming that you know how to use GitHub to clone a repository and use <a href="http://getcomposer.org">Composer</a> for php package management.  I also assume you are familiar with WordPress packages and the like.  This code is offered as-is and it may or may not work in your situation.  I'll try to help as much as I can but I can't provide full support for this code.  It is meant to get you started on your WP development journey with Ministry Platform.
 
 ### Clone the Repository
 Go to the location where you want the plugin code to reside and from there git clone the repository.
@@ -24,7 +24,7 @@ git clone https://github.com/smadeira/mp-wordpress-plugin.git
 ```
 
 ### Composer Update
-Use compoer to update your code.  It will down the latest version of the MP REST API wrapper and its dependencies.
+Use composer to update your code.  It will download the latest version of the MP REST API wrapper and its dependencies.
 ```
 composer update
 ```
@@ -33,13 +33,13 @@ composer update
 I found it easiest to keep things separated and under control by using this process to create your plugin.
 <ol><li>In your Wordpress installation, create a MinistryPlatform folder under wp-content/plugins.  You should see other plugins already in the plugins folder.</li>
 	<li>Copy the files from the mp-wordpress-plugin folder to this new MinistryPlatform plugin folder</li>
-	<li>From the admin dashboard you whoudl be able to click Plugins and see Minsitry Platform Data Access as a new plugin.  you need to activate it to continue.</li>
+	<li>From the admin dashboard you should be able to click Plugins and see Minsitry Platform Data Access as a new plugin.  you need to activate it to continue.</li>
 </ol>
 
 ### Enter MP and oAuth credentials
-To use the API you need to provide the credentials for authenticating to the REST API as well as the API endpoint you want to get data from.  TO do this, hover on the Pluginns menu
-option in the left column of the WP Admin dashboard.  An option for MP Plugin should be in the list.  Click MP PLugin to get to the configuration screen.  It will ask for the following:
-<ul><li>API Endpoint</li><li>Oauth Discovery Endpoint</li><li>MP Client ID</li><li>MP Client Secret</li><li>Scope</li></ul>.
+To use the API you need to provide the credentials for authenticating to the REST API as well as the API endpoint you want to get data from.  To do this, hover on the Plugins menu
+option in the left column of the WP Admin dashboard.  An option for MP Plugin should be in the list.  Click MP Plugin to get to the configuration screen.  It will ask for the following:
+<ul><li>API Endpoint</li><li>Oauth Discovery Endpoint</li><li>MP Client ID</li><li>MP Client Secret</li><li>Scope</li></ul>
 
 Examples are given on the configuration page and some of the data will come from your MP installation.
 
@@ -47,10 +47,10 @@ Examples are given on the configuration page and some of the data will come from
 You will need a page or place on an existing page to embed your shortcode.  Where you put it is up to you. To use this example you can use shortcode [mpapi_group_list] to see the table of groups.
 
 ## Sample Code
-Included in the plugin is a smaple to get you started and verify that your installation is working correctly.
+Included in the plugin is a sample to get you started and verify that your installation is working correctly.
 
 ### Basic Plumbing
-The top of the MinistryPlatform.php file has the required code to access the API wrapper and include the templates you need.  OTher than adding more / different templates, you should
+The top of the MinistryPlatform.php file has the required code to access the API wrapper and include the templates you need.  Other than adding more / different templates, you should
 not have to make any changes to this.  
 
 ```php
@@ -115,7 +115,11 @@ add_shortcode('mpapi_group_list', ['MinistryPlatform\MP_API_SHORTCODES', 'mpapi_
 The templates folder is where you can put all of your html templates for rendering the output. This is the sample group list template that just builds a simple table and returns the HTML
 to be rendered on the page. The important things are to include the namespace and use statement on all templates you make.  baseTemplate is where you can save common functions. You can build the content as you see fit and return it to the calling method.
 
-<b>BIG NOTE:</b> When you create a new template file you will need to run compose dump-auto to regenerate the autoload file.  Otherwise the code won't know where to find your template.<b>End of BIG NOTE</b>.
+<b>BIG NOTE:</b> When you create a new template file you will need to run 
+```
+composer dump-auto -o
+```
+to regenerate the autoload file.  Otherwise the code won't know where to find your template.<b>End of BIG NOTE</b>.
 
 ```php
 <?php namespace MinistryPlatform\Templates;
