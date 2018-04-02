@@ -35,8 +35,8 @@ class MP_API_SHORTCODES
         // Authenticate to get access token required for API calls
         if ($mp->authenticate()) {
 
-            $events = $mp->table('Groups')
-                ->select("Groups.Group_Name,Congregation_ID_Table.Congregation_Name,Ministry_ID_Table.Ministry_Name,Group_Type_ID_Table.Group_Type,Groups.Start_Date,Groups.End_Date,Parent_Group_Table.Group_Name AS [Parent Group], Groups.Group_ID")
+            $groups = $mp->table('Groups')
+                ->select("Groups.Group_Name,Congregation_ID_Table.Congregation_Name,Ministry_ID_Table.Ministry_Name,Group_Type_ID_Table.Group_Type,Groups.Start_Date,Groups.End_Date,Parent_Group_Table.Group_Name AS [Parent_Group], Groups.Group_ID")
                 ->filter('(Groups.End_Date IS NULL OR Groups.End_Date >= GetDate())')
                 ->orderBy('Group_Name')
                 ->get();
