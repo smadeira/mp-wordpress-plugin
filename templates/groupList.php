@@ -10,9 +10,7 @@ use MinistryPlatform\Templates\baseTemplate as baseTemplate;
  */
 class groupList extends baseTemplate
 {
-    public static function render($groups){
-
-        // echo "<pre>"; print_r($groups); echo "</pre>"; die();
+    public static function render($groups){        
 
         $content = '
             <div class="mpapi-featured-events"> 
