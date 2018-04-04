@@ -43,6 +43,10 @@ option in the left column of the WP Admin dashboard.  An option for MP Plugin sh
 
 Examples are given on the configuration page and some of the data will come from your MP installation.
 
+<b>NOTE:</b> There is a bug regarding the first time you enter the credentials.  Because they are new, they won't exist and PHP may give you some errors.  You can ignore the errors,
+enter your data and save.  It will work.  Subsequent visits to the configuration page should be fine because the options will be found in the database.
+
+
 ### Create a Page
 You will need a page or place on an existing page to embed your shortcode.  Where you put it is up to you. To use this example you can use shortcode [mpapi_group_list] to see the table of groups.
 
