@@ -63,7 +63,7 @@ not have to make any changes to this.
  */
 
 use MinistryPlatform\Templates\groupList;
-use MinistryPlatformAPI\MinistryPlatformAPI as MP;
+use MinistryPlatformAPI\MinistryPlatformTableAPI as MP;
 
 // Setup autoloading of supporting classes
 require_once __DIR__ . '/vendor/autoload.php';

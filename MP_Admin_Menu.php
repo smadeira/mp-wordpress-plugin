@@ -137,12 +137,28 @@ function ministry_platform_general_options_callback()
     echo '<p>The following parameters are required to authenticate to the API using oAuth and then execute API calls to Ministry Platform.</p>';
 }
 
+
+function get_option_value($key, $options) {
+
+    // If the options don't exist, return empty string
+    if (! is_array($options)) return '';
+
+    // If the key is in the array, return the value, else return empty string.
+
+    return  array_key_exists($key, $options) ? $options[$key] : '';
+
+}
+
 function mp_api_endpoint_callback($args)
 {
     $options = get_option('ministry_platform_plugin_options');
 
+
+    $opt = get_option_value('MP_API_ENDPOINT', $options);
+
+
     // Note the ID and the name attribute of the element match that of the ID in the call to add_settings_field
-    $html = '<input type="text" id="MP_API_ENDPOINT" name="ministry_platform_plugin_options[MP_API_ENDPOINT]" value="'. $options['MP_API_ENDPOINT'] . '" size="60"/>';
+    $html = '<input type="text" id="MP_API_ENDPOINT" name="ministry_platform_plugin_options[MP_API_ENDPOINT]" value="'. $opt . '" size="60"/>';
 
     // Here, we will take the first argument of the array and add it to a label next to the checkbox
     $html .= '<label for="MP_API_ENDPOINT"> ' . $args[0] . '</label>';
@@ -155,8 +171,10 @@ function mp_oauth_discovery_callback($args)
 {
     $options = get_option('ministry_platform_plugin_options');
 
+    $opt = get_option_value('MP_OAUTH_DISCOVERY_ENDPOINT', $options);
+
     // Note the ID and the name attribute of the element match that of the ID in the call to add_settings_field
-    $html = '<input type="text" id="MP_OAUTH_DISCOVERY_ENDPOINT" name="ministry_platform_plugin_options[MP_OAUTH_DISCOVERY_ENDPOINT]" value="'. $options['MP_OAUTH_DISCOVERY_ENDPOINT'] . '" size="60"/>';
+    $html = '<input type="text" id="MP_OAUTH_DISCOVERY_ENDPOINT" name="ministry_platform_plugin_options[MP_OAUTH_DISCOVERY_ENDPOINT]" value="'. $opt . '" size="60"/>';
 
     // Here, we will take the first argument of the array and add it to a label next to the checkbox
     $html .= '<label for="MP_OAUTH_DISCOVERY_ENDPOINT"> ' . $args[0] . '</label>';
@@ -168,8 +186,10 @@ function mp_client_id_callback($args)
 {
     $options = get_option('ministry_platform_plugin_options');
 
+    $opt = get_option_value('MP_CLIENT_ID', $options);
+
     // Note the ID and the name attribute of the element match that of the ID in the call to add_settings_field
-    $html = '<input type="text" id="MP_CLIENT_ID" name="ministry_platform_plugin_options[MP_CLIENT_ID]" value="'. $options['MP_CLIENT_ID'] . '" size="60"/>';
+    $html = '<input type="text" id="MP_CLIENT_ID" name="ministry_platform_plugin_options[MP_CLIENT_ID]" value="'. $opt . '" size="60"/>';
 
     // Here, we will take the first argument of the array and add it to a label next to the checkbox
     $html .= '<label for="MP_CLIENT_ID"> ' . $args[0] . '</label>';
@@ -181,8 +201,10 @@ function mp_client_secret_callback($args)
 {
     $options = get_option('ministry_platform_plugin_options');
 
+    $opt = get_option_value('MP_CLIENT_SECRET', $options);
+
     // Note the ID and the name attribute of the element match that of the ID in the call to add_settings_field
-    $html = '<input type="text" id="MP_CLIENT_SECRET" name="ministry_platform_plugin_options[MP_CLIENT_SECRET]" value="'. $options['MP_CLIENT_SECRET'] . '" size="60"/>';
+    $html = '<input type="text" id="MP_CLIENT_SECRET" name="ministry_platform_plugin_options[MP_CLIENT_SECRET]" value="'. $opt . '" size="60"/>';
 
     // Here, we will take the first argument of the array and add it to a label next to the checkbox
     $html .= '<label for="MP_CLIENT_SECRET"> ' . $args[0] . '</label>';
@@ -194,8 +216,10 @@ function mp_api_scope_callback($args)
 {
     $options = get_option('ministry_platform_plugin_options');
 
+    $opt = get_option_value('MP_API_SCOPE', $options);
+
     // Note the ID and the name attribute of the element match that of the ID in the call to add_settings_field
-    $html = '<input type="text" id="MP_API_SCOPE" name="ministry_platform_plugin_options[MP_API_SCOPE]" value="'. $options['MP_API_SCOPE'] . '" size="60"/>';
+    $html = '<input type="text" id="MP_API_SCOPE" name="ministry_platform_plugin_options[MP_API_SCOPE]" value="'. $opt . '" size="60"/>';
 
     // Here, we will take the first argument of the array and add it to a label next to the checkbox
     $html .= '<label for="MP_API_SCOPE"> ' . $args[0] . '</label>';
@@ -210,7 +234,8 @@ function mp_api_scope_callback($args)
  */
 function mpLoadConnectionParameters()
 {
-    $options = get_option('ministry_platform_plugin_options');
+    // If no options available then just return - it hasn't been setup yet
+    if ( !$options = get_option('ministry_platform_plugin_options', '') ) return;
 
     foreach ($options as $option => $value) {
         $envString = $option . '=' . $value;
